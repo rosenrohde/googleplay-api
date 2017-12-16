@@ -12,6 +12,7 @@ from base64 import b64decode, urlsafe_b64encode
 from itertools import chain
 
 from . import googleplay_pb2, config, utils
+import warnings
 
 ssl_verify = True
 
@@ -197,7 +198,12 @@ class GooglePlayAPI(object):
             self.gsfId = gsfId
             self.setAuthSubToken(authSubToken)
             # check if token is valid with a simple search
-            self.search('firefox', 1, None)
+            with warnings.catch_warnings():
+                warnings.filterwarnings('error')
+                try:
+                    self.search('firefox', 1, None)
+                except RuntimeWarning:
+                    print('RUNTIME WARNING')
         else:
             raise LoginError('Either (email,pass) or (gsfId, authSubToken) is needed')
 
