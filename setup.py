@@ -26,7 +26,7 @@ class ProtobufBuilder(_build):
         super().run()
 
 setup(name='matlink-gpapi',
-      version='0.4.4.1',
+      version='0.4.4.2',
       description='Unofficial python api for google play',
       url='https://github.com/NoMore201/googleplay-api',
       author='NoMore201',
